@@ -1,7 +1,7 @@
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-white p-4 text-center">
-      <p>© 2026 Mon site</p>
+    <footer className="bg-gray-900 text-white p-16 text-center">
+      <p className="text-4xl">©Cegep Saint-Félicien</p>
     </footer>
   )
 }
