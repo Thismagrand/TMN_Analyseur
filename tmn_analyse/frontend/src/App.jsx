@@ -29,7 +29,7 @@ function App() {
           <h1 className='font-bold text-7xl'>Birdnet</h1>
           <input type="text" className='border-2 pt-1 pl-2 pr-10 rounded-2xl' value={path}
             onChange={(e) => setChemin(e.target.value)} />
-          <button onClick={testerDossier} className='border-2 p-3 rounded-2xl'>
+          <button onClick={testerDossier} className='border-2 p-3 rounded-2xl hover:backdrop-brightness-150 cursor-pointer active:backdrop-brightness-125'>
             Tester le dossier
           </button>
         </div>
