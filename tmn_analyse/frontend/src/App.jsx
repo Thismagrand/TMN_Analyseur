@@ -4,6 +4,8 @@ import Footer from "./components/Footer";
 import { RoutePublique } from "./auth/RoutesProtegees";
 import PageBirdnet from "./pages/Birnet";
 import PageOpenbat from "./pages/Openbat";
+import PageMegaDetector from "./pages/MegaDetector";
+import PageAccueil from "./pages/Accueil";
 
 function App() {
 
@@ -14,11 +16,10 @@ function App() {
         <Routes>
           {/* Routes publiques - aucune connexion */}
           <Route element={<RoutePublique />}>
+            <Route path="/" element={<PageAccueil />} />
             <Route path="/RedirPageBirdnet" element={<PageBirdnet />} />
             <Route path="/RedirPageOpenbat" element={<PageOpenbat />} />
-            {/*<Route path="/" element={<PageBirdnet />} />*/}
-
-
+            <Route path="/RedirPageMega" element={<PageMegaDetector />} />
           </Route>
         </Routes>
       </main>
