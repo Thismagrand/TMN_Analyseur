@@ -12,7 +12,7 @@ function Header() {
             <img src="src\assets\Logo cégep.jpg" alt="" className='h-60 mr-14 rounded-4xl' />
           </Link>
           <h1 className="text-6xl font-bold mr-5 mt-8">
-            Techniques des Milieux Naturels
+            Techniques du Milieu Naturel
           </h1>
           <h1 className="text-5xl font-light italic text-emerald-200 mt-10"> analyse</h1>
         </div>

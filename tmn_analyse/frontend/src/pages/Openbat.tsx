@@ -6,7 +6,7 @@ import { useState } from 'react';
 function PageOpenbat() {
   const [path, setChemin] = useState('')
   const testerDossier = async () => {
-    const response = await fetch("http://127.0.0.1:8000/analyser", {
+    const response = await fetch("http://127.0.0.1:8000/analyserChauvesouris", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

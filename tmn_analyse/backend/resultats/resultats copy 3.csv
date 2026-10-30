@@ -1,0 +1,4 @@
+nom_espece,nom_scientifique,confiance,fichier
+Merle noir,Turdus merula,0.92,audio001.wav
+Mésange bleue,Cyanistes caeruleus,0.87,audio001.wav
+Rouge-gorge familier,Erithacus rubecula,0.96,audio002.wav

@@ -1,7 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from batdetect2 import BatDetect2API
 import subprocess
+import csv
+from pathlib import Path
 
 app = FastAPI()
 
@@ -22,7 +25,31 @@ class Dossier(BaseModel):
 def accueil():
     return {"message": "FastAPI fonctionne !"}
 
+#Batdetect2
+# If you don't specify a checkpoint the default model will be loaded
+api = BatDetect2API.from_checkpoint()
 
+
+def analyser_fichier(chemin: str):
+    prediction = api.process_file(chemin)
+
+    for detection in prediction.detections:
+        top_class = api.get_top_class_name(detection)
+        score = detection.detection_score
+
+        if(score > 0.5):
+            print(top_class, score)
+
+
+@app.post("/analyserChauvesouris")
+def analyser_chauvesouris(demande: Dossier):
+    dossier = Path(demande.chemin)
+    for fichier in dossier.glob("*.wav"):
+        print(fichier)
+        analyser_fichier(fichier)
+    return {"message": "Analyse terminée"}
+
+#Birdnet
 @app.post("/analyser")
 def analyser(dossier: Dossier):
 
@@ -30,7 +57,9 @@ def analyser(dossier: Dossier):
 
     commande = [
         r"C:\Users\Grand\AppData\Local\Programs\BirdNET-Analyzer\BirdNET-Analyzer.exe",
-        dossier.chemin
+        dossier.chemin,
+        "--rtype", "csv",
+        "-o", dossier.chemin,
     ]
 
     print("COMMANDE :", commande)
@@ -47,3 +76,4 @@ def analyser(dossier: Dossier):
         "stdout": resultat.stdout,
         "stderr": resultat.stderr
     }
+
